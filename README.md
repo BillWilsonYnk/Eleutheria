@@ -1,149 +1,183 @@
 # 🚀 HBAR PROFIT HARVESTER 🚀
-*Automated Inverse DCA Trading Bot for Hedera*
 
-![Hedera](https://raw.githubusercontent.com/hashgraph/hedera-improvement-proposal/main/assets/hip/logos/HIP_Logo_Color_Dark.png)
+<div align="center">
 
-## 💰 Never Miss a Profit Opportunity Again 💰
+![HBAR Banner](https://i.imgur.com/placeholder.png)
 
-The HBAR Profit Harvester is an intelligent trading bot that automatically buys Hedera during price dips and harvests profits during price increases - all while protecting your initial investment.
+### *The Autonomous Crypto Trading Bot That Never Sleeps*
 
----
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
+[![Coinbase](https://img.shields.io/badge/Exchange-Coinbase-blue)](https://www.coinbase.com/)
+[![Crypto](https://img.shields.io/badge/Crypto-HBAR-teal)](https://hedera.com/)
 
-## ✨ FEATURES
-
-- **🔍 Smart Capital Detection** - Automatically identifies your total portfolio value
-- **💸 Dip Buying** - Automatically purchases $1000 HBAR when price hits the sweet spot ($0.17-$0.21)
-- **📈 Profit Harvesting** - Intelligently sells ONLY your profits when price rises above $0.23
-- **🛡️ Capital Shield** - Preserves your initial investment at all costs
-- **⏱️ 24/7 Market Monitoring** - Works while you sleep
+</div>
 
 ---
 
-## 🔧 SETUP
+## 💎 WHAT IS THIS SORCERY? 💎
 
-### Requirements
-- Coinbase account with API access
-- Python 3.6+
-- Basic dependencies (requests, time, json, etc.)
+**HBAR Profit Harvester** is the ultimate "set it and forget it" trading bot for Hedera ($HBAR) that does one thing exceptionally well: **Makes you money while you sleep**.
 
-### Quick Start
+This bot implements an **inverse DCA strategy** that:
+- 📉 **BUYS** when prices drop into the sweet spot ($0.17-$0.21)
+- 📈 **SELLS** only your profits when price surges ($0.23+)
+- 🛡️ **PROTECTS** your principal investment at all costs
+- 🔄 **REPEATS** this cycle to accumulate more HBAR over time
+
+> *"Buy low, sell high, automate or die trying."*
+
+---
+
+## 🚀 THE EDGE YOU'VE BEEN LOOKING FOR 🚀
+
+<table>
+<tr>
+<td width="50%">
+
+### Without This Bot
+- 😱 FOMO buying at market peaks
+- 😰 Panic selling during dips
+- 😴 Missing profit opportunities while sleeping
+- 🤯 Emotional trading decisions
+- ⏰ Constantly checking prices
+- 📊 No systematic strategy
+</td>
+<td width="50%">
+
+### With HBAR Profit Harvester
+- 🤖 Automated buying at optimal prices
+- 💰 Systematic profit taking
+- 🔋 24/7 market monitoring
+- 🧠 Emotion-free trading decisions
+- ⛱️ Peace of mind & freedom
+- 📈 Growing HBAR position over time
+</td>
+</tr>
+</table>
+
+---
+
+## ⚡ INSTALLATION ⚡
+
 ```bash
-# 1. Clone or download
+# Clone this beast
 git clone https://github.com/yourusername/hbar-profit-harvester.git
 
-# 2. Install requirements
-pip install requests
+# Enter the money factory
+cd hbar-profit-harvester
 
-# 3. Configure your API keys
-# Edit the script and add your keys:
-# API_KEY = "your_key_here"
-# API_SECRET = "your_secret_here"
-# API_PASSPHRASE = "your_passphrase_here"
+# Power it up
+pip install -r requirements.txt
 
-# 4. Launch the bot
+# Configure (see below)
+
+# Release the Kraken
 python hbar_profit_harvester.py
 ```
 
 ---
 
-## 🧠 HOW IT WORKS
+## 🔧 CONFIGURATION 🔧
 
-### The Profit Cycle
-```
-┌────────────────────┐
-│                    │
-│ DETECT PORTFOLIO   │◄────────────────────┐
-│ VALUE              │                     │
-│                    │                     │
-└─────────┬──────────┘                     │
-          │                                │
-          ▼                                │
-┌────────────────────┐                     │
-│                    │                     │
-│ MONITOR PRICE      │                     │
-│                    │                     │
-└─────────┬──────────┘                     │
-          │                                │
-          ▼                                │
-┌────────────────────┐     ┌──────────────┴───┐
-│  PRICE BETWEEN     │     │                   │
-│  $0.17 and $0.21?  │ No  │ PRICE ABOVE       │
-├────────────────────┤────►│ $0.23?            │
-│        Yes         │     │                   │
-└─────────┬──────────┘     └──────────┬────────┘
-          │                           │
-          ▼                           │
-┌────────────────────┐                │ Yes
-│                    │                │
-│ BUY $1000 HBAR     │                │
-│                    │                ▼
-└─────────┬──────────┘     ┌────────────────────┐
-          │                │                    │
-          └───────────────►│ SELL ONLY PROFITS  │
-                           │                    │
-                           └────────────────────┘
+1️⃣ Get your Coinbase API credentials (Settings → API → New API Key)
+   * ✅ Enable trading permissions
+   * ❌ Disable withdrawal permissions
+
+2️⃣ Add your keys to the script:
+```python
+API_KEY = "your_coinbase_api_key"  # The key to the kingdom
+API_SECRET = "your_coinbase_api_secret"  # Keep this SECRET
+API_PASSPHRASE = "your_coinbase_api_passphrase"  # The magic words
 ```
 
-### Real-World Example
-
-Starting with $3000 investment:
-
-1. Bot detects your $3000 portfolio as your protected capital
-2. HBAR price rises to $0.25, your portfolio now worth $3800
-3. Bot automatically sells $800 worth of HBAR (the profit)
-4. Your original $3000 remains intact
-5. Price drops to $0.19, bot buys $1000 more HBAR
-6. Cycle repeats, gradually increasing your HBAR position
+3️⃣ Customize your strategy (or keep the proven defaults):
+```python
+BUY_PRICE_MIN = 0.17    # 📉 The bottom of your buy zone
+BUY_PRICE_MAX = 0.21    # 📊 The top of your buy zone
+SELL_PRICE_MIN = 0.23   # 📈 Your profit target
+PURCHASE_AMOUNT = 1000  # 💸 How much to invest each time
+CHECK_INTERVAL = 3600   # ⏱️ How often to check (in seconds)
+```
 
 ---
 
-## 🛠️ CONFIGURATION
+## 🧠 HOW THE MAGIC HAPPENS 🧠
 
-Easily customize your strategy by modifying these parameters:
+<div align="center">
 
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| BUY_PRICE_MIN | $0.17 | Minimum price to start buying |
-| BUY_PRICE_MAX | $0.21 | Maximum price for buying |
-| SELL_PRICE_MIN | $0.23 | Minimum price to start selling profits |
-| PURCHASE_AMOUNT | $1000 | Amount to buy with each transaction |
-| CHECK_INTERVAL | 3600s | How often to check prices (in seconds) |
+```
+         🔍 DETECT PORTFOLIO VALUE
+                     │
+                     ▼
+            🔄 MONITOR HBAR PRICE
+                     │
+                     ▼
+          ┌─────────────────────┐
+          │  IS PRICE BETWEEN   │
+          │  $0.17 AND $0.21?   │
+          └─────────────────────┘
+           /                    \
+         YES                     NO
+         /                         \
+┌─────────────────┐                 ┌─────────────────┐
+│  BUY $1000 HBAR │                 │ IS PRICE $0.23+ │
+└─────────────────┘                 └─────────────────┘
+         │                                  /     \
+         │                               YES       NO
+         │                               /          \
+         │                ┌─────────────────────┐    │
+         └───────────────►│ SELL ONLY PROFITS,  │    │
+                          │ KEEP PRINCIPAL      │    │
+                          └─────────────────────┘    │
+                                    │                │
+                                    └────────────────┘
+                                          │
+                                          ▼
+                                    🔄 REPEAT
+```
+
+</div>
+
+### 💡 Real-World Example:
+
+* 💼 You start with: $3000 total portfolio
+* 📈 HBAR price rises to $0.25, portfolio now worth $3800
+* 🤖 Bot calculates: $3800 - $3000 = $800 profit
+* 💰 Bot sells: Exactly $800 worth of HBAR
+* 🔒 Your $3000 principal remains intact
+* 📉 Price drops to $0.19 (buy zone)
+* 🛒 Bot buys: $1000 worth of HBAR
+* 🔁 Cycle repeats, growing your stack
 
 ---
 
-## ⚠️ IMPORTANT NOTES
+## 🦾 ADVANCED FEATURES 🦾
 
-- **Run on a reliable server** - A cloud VPS works best for 24/7 operation
-- **Secure your API keys** - Only grant trading permissions, never withdrawal
-- **Monitor regularly** - Check on your bot's performance weekly
-- **Start small** - Test with smaller amounts until you're comfortable
-
----
-
-## 📊 RESULTS
-
-Users report:
-- Less emotional trading decisions
-- Consistent profit taking during volatility
-- Growing HBAR positions over time
-- Peace of mind from capital protection
+* **Auto-Capital Detection**: Detects your starting portfolio value automatically
+* **Partial Profit Taking**: Only harvests profits, leaving your base untouched
+* **Dynamic Logging**: Detailed activity reports for monitoring
+* **Error Handling**: Robust recovery from API failures
+* **Flexible Timing**: Configurable check intervals
 
 ---
 
-## 📜 DISCLAIMER
+## ⚠️ DISCLAIMER ⚠️
 
-*This tool is provided for educational purposes only. Cryptocurrency trading involves significant risk of loss. Past performance is not indicative of future results. Use at your own risk.*
-
----
-
-## 🤝 CONTRIBUTE
-
-Found a bug or want to improve the bot? PRs welcome!
-
-## 📄 LICENSE
-
-[MIT License](LICENSE) - Do whatever you want with this, just don't blame me if you lose money.
+*Trading cryptocurrency involves significant risk and potential for loss. This software is provided "as is" without warranty of any kind. The developers are not responsible for any losses incurred through the use of this bot. Use at your own risk and never invest more than you can afford to lose.*
 
 ---
 
-*"Buy the dip, sell the rip, automate the trip."* 🚀
+## 📜 LICENSE 📜
+
+MIT License - Do whatever you want with this code, just don't blame me if you lose money.
+
+---
+
+<div align="center">
+  
+*Built with ❤️ by crypto enthusiasts, for crypto enthusiasts*
+
+**[⬆ back to top](#-hbar-profit-harvester-)**
+
+</div>
