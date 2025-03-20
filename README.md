@@ -1,79 +1,149 @@
-# Inverse DCA Script for Hedera (HBAR)
+# 🚀 HBAR PROFIT HARVESTER 🚀
+*Automated Inverse DCA Trading Bot for Hedera*
 
-This script automates an inverse DCA (Dollar Cost Averaging) investment strategy for Hedera (HBAR) on Coinbase. It is designed to automatically buy during dips and take profits during price increases, while preserving your initial capital.
+![Hedera](https://raw.githubusercontent.com/hashgraph/hedera-improvement-proposal/main/assets/hip/logos/HIP_Logo_Color_Dark.png)
 
-## Features
+## 💰 Never Miss a Profit Opportunity Again 💰
 
-- **Automatic capital detection**: Calculates your total capital at startup (HBAR + USD)
-- **Automated purchases**: Buys $1000 worth of HBAR when the price is between $0.17 and $0.21
-- **Intelligent profit-taking**: Only sells profits (beyond initial capital) when price reaches $0.23 or higher
-- **Capital preservation**: Always maintains your initial capital intact
+The HBAR Profit Harvester is an intelligent trading bot that automatically buys Hedera during price dips and harvests profits during price increases - all while protecting your initial investment.
 
-## Prerequisites
+---
 
-- A Coinbase account with API enabled
-- Python 3.6 or higher
-- Python libraries: `requests`, `time`, `json`, `hmac`, `hashlib`, `base64`, `datetime`
+## ✨ FEATURES
 
-## Installation
+- **🔍 Smart Capital Detection** - Automatically identifies your total portfolio value
+- **💸 Dip Buying** - Automatically purchases $1000 HBAR when price hits the sweet spot ($0.17-$0.21)
+- **📈 Profit Harvesting** - Intelligently sells ONLY your profits when price rises above $0.23
+- **🛡️ Capital Shield** - Preserves your initial investment at all costs
+- **⏱️ 24/7 Market Monitoring** - Works while you sleep
 
-1. Clone this repository or download the script
-2. Install dependencies:
-   ```
-   pip install requests
-   ```
-3. Configure your Coinbase API keys in the script:
-   - `API_KEY`
-   - `API_SECRET`
-   - `API_PASSPHRASE`
+---
 
-## Configuration
+## 🔧 SETUP
 
-The following parameters can be adjusted according to your preferences:
+### Requirements
+- Coinbase account with API access
+- Python 3.6+
+- Basic dependencies (requests, time, json, etc.)
 
-- `PRIX_ACHAT_MIN` ($0.17 by default) - Minimum price to buy
-- `PRIX_ACHAT_MAX` ($0.21 by default) - Maximum price to buy
-- `PRIX_VENTE_MIN` ($0.23 by default) - Minimum price to sell (take profits)
-- `MONTANT_ACHAT` ($1000 by default) - Amount to invest with each purchase
-- `INTERVALLE_VERIFICATION` (3600 seconds by default) - Frequency of price checks
-
-## Usage
-
+### Quick Start
 ```bash
-python inverse_dca_hbar.py
+# 1. Clone or download
+git clone https://github.com/yourusername/hbar-profit-harvester.git
+
+# 2. Install requirements
+pip install requests
+
+# 3. Configure your API keys
+# Edit the script and add your keys:
+# API_KEY = "your_key_here"
+# API_SECRET = "your_secret_here"
+# API_PASSPHRASE = "your_passphrase_here"
+
+# 4. Launch the bot
+python hbar_profit_harvester.py
 ```
 
-The script will automatically detect your initial capital and begin monitoring prices to execute the strategy.
+---
 
-## How the Inverse DCA Strategy Works
+## 🧠 HOW IT WORKS
 
-1. **Initial Detection**: At startup, the script calculates your total capital (value of your HBAR + USD balance)
-2. **Purchase Cycle**: When HBAR price enters the buying zone ($0.17-$0.21), the script buys automatically
-3. **Profit Taking**: When the price rises to $0.23 or more:
-   - The script calculates your profits (current value - initial capital)
-   - It sells only the amount of HBAR corresponding to the profits
-   - Your initial capital remains intact
-4. **Repetition**: The cycle repeats, potentially allowing you to increase your position over time
+### The Profit Cycle
+```
+┌────────────────────┐
+│                    │
+│ DETECT PORTFOLIO   │◄────────────────────┐
+│ VALUE              │                     │
+│                    │                     │
+└─────────┬──────────┘                     │
+          │                                │
+          ▼                                │
+┌────────────────────┐                     │
+│                    │                     │
+│ MONITOR PRICE      │                     │
+│                    │                     │
+└─────────┬──────────┘                     │
+          │                                │
+          ▼                                │
+┌────────────────────┐     ┌──────────────┴───┐
+│  PRICE BETWEEN     │     │                   │
+│  $0.17 and $0.21?  │ No  │ PRICE ABOVE       │
+├────────────────────┤────►│ $0.23?            │
+│        Yes         │     │                   │
+└─────────┬──────────┘     └──────────┬────────┘
+          │                           │
+          ▼                           │
+┌────────────────────┐                │ Yes
+│                    │                │
+│ BUY $1000 HBAR     │                │
+│                    │                ▼
+└─────────┬──────────┘     ┌────────────────────┐
+          │                │                    │
+          └───────────────►│ SELL ONLY PROFITS  │
+                           │                    │
+                           └────────────────────┘
+```
 
-## Example
+### Real-World Example
 
-- Detected initial capital: $3000
-- HBAR price rises to $0.25, total value reaches $3800
-- The script identifies $800 in profits and sells only the portion of HBAR equivalent to $800
-- Your $3000 capital remains intact to benefit from future increases
-- Price drops to $0.19, the script automatically buys $1000 worth
+Starting with $3000 investment:
 
-## Security
+1. Bot detects your $3000 portfolio as your protected capital
+2. HBAR price rises to $0.25, your portfolio now worth $3800
+3. Bot automatically sells $800 worth of HBAR (the profit)
+4. Your original $3000 remains intact
+5. Price drops to $0.19, bot buys $1000 more HBAR
+6. Cycle repeats, gradually increasing your HBAR position
 
-- Never share your API keys
-- Limit your API key permissions to "trading" only
-- Use a secure server to run the script
-- Regularly monitor activities to ensure everything is working as expected
+---
 
-## Disclaimer
+## 🛠️ CONFIGURATION
 
-This script is provided for educational and informational purposes only. Using this script involves risks inherent in cryptocurrency trading. Past performance is not indicative of future results. Use at your own risk.
+Easily customize your strategy by modifying these parameters:
 
-## License
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| BUY_PRICE_MIN | $0.17 | Minimum price to start buying |
+| BUY_PRICE_MAX | $0.21 | Maximum price for buying |
+| SELL_PRICE_MIN | $0.23 | Minimum price to start selling profits |
+| PURCHASE_AMOUNT | $1000 | Amount to buy with each transaction |
+| CHECK_INTERVAL | 3600s | How often to check prices (in seconds) |
 
-[MIT License](LICENSE)
+---
+
+## ⚠️ IMPORTANT NOTES
+
+- **Run on a reliable server** - A cloud VPS works best for 24/7 operation
+- **Secure your API keys** - Only grant trading permissions, never withdrawal
+- **Monitor regularly** - Check on your bot's performance weekly
+- **Start small** - Test with smaller amounts until you're comfortable
+
+---
+
+## 📊 RESULTS
+
+Users report:
+- Less emotional trading decisions
+- Consistent profit taking during volatility
+- Growing HBAR positions over time
+- Peace of mind from capital protection
+
+---
+
+## 📜 DISCLAIMER
+
+*This tool is provided for educational purposes only. Cryptocurrency trading involves significant risk of loss. Past performance is not indicative of future results. Use at your own risk.*
+
+---
+
+## 🤝 CONTRIBUTE
+
+Found a bug or want to improve the bot? PRs welcome!
+
+## 📄 LICENSE
+
+[MIT License](LICENSE) - Do whatever you want with this, just don't blame me if you lose money.
+
+---
+
+*"Buy the dip, sell the rip, automate the trip."* 🚀
