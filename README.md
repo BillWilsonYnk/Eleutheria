@@ -2,7 +2,6 @@
 
 <div align="center">
 
-![HBAR Banner](https://i.imgur.com/placeholder.png)
 
 ### *The Autonomous Crypto Trading Bot That Never Sleeps*
 
