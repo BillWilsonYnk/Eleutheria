@@ -2,7 +2,6 @@
 
 <div align="center">
 
-![HBAR Banner](https://i.imgur.com/placeholder.png)
 
 ### *The Autonomous Crypto Trading Bot That Never Sleeps*
 
@@ -162,16 +161,6 @@ CHECK_INTERVAL = 3600   # ⏱️ How often to check (in seconds)
 
 ---
 
-## 🔥 TESTIMONIALS 🔥
-
-> *"This bot turned my weak hands into diamond hands. My HBAR stack grew 32% in 3 months!"* - Crypto Chad
-
-> *"I finally stopped panic selling and FOMO buying. This thing is like having a trading expert working 24/7."* - HBAR Hodler
-
-> *"Set it up on my Raspberry Pi and forgot about it. Came back from vacation to find extra profits in my account."* - TechTrader
-
----
-
 ## ⚠️ DISCLAIMER ⚠️
 
 *Trading cryptocurrency involves significant risk and potential for loss. This software is provided "as is" without warranty of any kind. The developers are not responsible for any losses incurred through the use of this bot. Use at your own risk and never invest more than you can afford to lose.*
@@ -182,15 +171,6 @@ CHECK_INTERVAL = 3600   # ⏱️ How often to check (in seconds)
 
 MIT License - Do whatever you want with this code, just don't blame me if you lose money.
 
----
-
-<div align="center">
-
-### 💫 STAR THIS REPO IF IT HELPED YOU! 💫
-
-[Follow Me](https://github.com/yourusername) | [Report Bug](https://github.com/yourusername/hbar-profit-harvester/issues) | [Request Feature](https://github.com/yourusername/hbar-profit-harvester/issues)
-
-</div>
 
 ---
 
