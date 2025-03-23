@@ -1,0 +1,25 @@
+# Dependabot configuration file for HBAR Profit Harvester
+# This ensures all dependencies stay updated and secure
+version: 2
+updates:
+  - package-ecosystem: "pip" # For Python packages
+    directory: "/" # Location of requirements.txt
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    target-branch: "main"
+    labels:
+      - "dependencies"
+      - "automated"
+    assignees:
+      - "BillWilsonYnk"
+    reviewers:
+      - "BillWilsonYnk"
+    # Allow up to 5 minor and patch updates together
+    groups:
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
