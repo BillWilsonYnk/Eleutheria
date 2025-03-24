@@ -1,4 +1,4 @@
-# 🚀 ELEUTHEIA 🚀
+# 🚀 ELEUTHERIA 🚀
 
 <div align="center">
 
