@@ -1,4 +1,4 @@
-# 🚀 HBAR PROFIT HARVESTER 🚀
+# 🚀 ELEUTHEIA 🚀
 
 <div align="center">
 
