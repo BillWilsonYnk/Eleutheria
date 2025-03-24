@@ -171,13 +171,3 @@ CHECK_INTERVAL = 3600   # ⏱️ How often to check (in seconds)
 
 MIT License - Do whatever you want with this code, just don't blame me if you lose money.
 
-
----
-
-<div align="center">
-  
-*Built with ❤️ by crypto enthusiasts, for crypto enthusiasts*
-
-**[⬆ back to top](#-hbar-profit-harvester-)**
-
-</div>
