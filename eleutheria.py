@@ -45,7 +45,7 @@ HBAR_SYMBOL = "HBAR-USD"
 
 # Paramètres de la stratégie
 PRIX_ACHAT_MIN = 0.17  # Prix minimum pour acheter
-PRIX_ACHAT_MAX = 0.21  # Prix maximum pour acheter
+PRIX_ACHAT_MAX = 0.17  # Prix maximum pour acheter
 PRIX_VENTE_MIN = 0.23  # Prix minimum pour vendre (prendre des bénéfices)
 MONTANT_ACHAT = 1000  # Montant en USD à acheter à chaque fois
 
