@@ -16,7 +16,7 @@
 
 ## 💎 WHAT IS THIS SORCERY? 💎
 
-**HBAR Profit Harvester** is the ultimate "set it and forget it" trading bot for Hedera ($HBAR) that does one thing exceptionally well: **Makes you money while you sleep**.
+**ELEUTHERIA** is the ultimate "set it and forget it" trading bot for Hedera ($HBAR) that does one thing exceptionally well: **Makes you money while you sleep**.
 
 This bot implements an **inverse DCA strategy** that:
 - 📉 **BUYS** when prices drop into the sweet spot ($0.17-$0.21)
