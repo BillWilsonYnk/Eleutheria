@@ -10,13 +10,9 @@
 
 </div>
 
-<p align="center">
-  <img src="https://via.placeholder.com/800x400?text=Eleutheria+Trading+Bot" alt="Eleutheria Banner" width="800"/>
-</p>
-
 ---
 
-## 📊 Performances optimisées pour HBAR à 0,13$
+## 📊 Performances optimisées pour HBAR
 
 Eleutheria a été entièrement repensé pour prospérer dans le marché actuel de Hedera. Que le prix monte ou descende, notre algorithme adaptatif trouve des opportunités de profit, même quand le marché semble stagner.
 
