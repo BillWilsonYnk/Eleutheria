@@ -231,12 +231,6 @@ Ce projet est sous [licence MIT](LICENSE.md).
 <i>"L'autonomie financière à portée d'algorithme"</i>
 </p>
 
-<p align="center">
-<a href="https://github.com/votre-compte/eleutheria/issues">Signaler un bug</a> •
-<a href="https://github.com/votre-compte/eleutheria/wiki">Documentation</a> •
-<a href="mailto:contact@eleutheria-bot.com">Contact</a>
-</p>
-
 <div align="center">
 <p>
 <b>Développé par Bill Wilson Yede Nka</b><br>
