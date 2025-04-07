@@ -1,173 +1,244 @@
-# 🚀 ELEUTHERIA 🚀
+# 🤖 ELEUTHERIA TRADING BOT
+> *La liberté financière automatisée pour Hedera (HBAR)*
 
 <div align="center">
 
+![Version](https://img.shields.io/badge/Version-2.0-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Cryptocurrency](https://img.shields.io/badge/Crypto-HBAR-blueviolet)
+![Platform](https://img.shields.io/badge/Platform-Coinbase-orange)
 
-### *The Autonomous Crypto Trading Bot That Never Sleeps*
+</div>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
-[![Coinbase](https://img.shields.io/badge/Exchange-Coinbase-blue)](https://www.coinbase.com/)
-[![Crypto](https://img.shields.io/badge/Crypto-HBAR-teal)](https://hedera.com/)
+<p align="center">
+  <img src="https://via.placeholder.com/800x400?text=Eleutheria+Trading+Bot" alt="Eleutheria Banner" width="800"/>
+</p>
+
+---
+
+## 📊 Performances optimisées pour HBAR à 0,13$
+
+Eleutheria a été entièrement repensé pour prospérer dans le marché actuel de Hedera. Que le prix monte ou descende, notre algorithme adaptatif trouve des opportunités de profit, même quand le marché semble stagner.
+
+<div align="center">
+
+| Stratégie précédente | Stratégie Eleutheria 2.0 |
+|:-------------------:|:------------------------:|
+| Achat entre 0,17$ et 0,21$ | Zones d'achat dynamiques adaptées au marché |
+| Vente uniquement au-dessus de 0,23$ | Prise de bénéfices progressive dès 0,14$ |
+| Paramètres fixes | Adaptation automatique aux conditions du marché |
+| Pas de protection contre les pertes | Stop loss dynamique intégré |
 
 </div>
 
 ---
 
-## 💎 WHAT IS THIS SORCERY? 💎
+## ⚡ Caractéristiques principales
 
-**ELEUTHERIA** is the ultimate "set it and forget it" trading bot for Hedera ($HBAR) that does one thing exceptionally well: **Makes you money while you sleep**.
+### 🎯 Stratégie d'achat multi-niveaux intelligent
+```
+PRIX ACTUEL : 0,13$
+⬇️ Zone 1 : 0,12$ - 0,13$ → Achat léger (10% du capital)
+⬇️ Zone 2 : 0,11$ - 0,12$ → Achat modéré (15% du capital)
+⬇️ Zone 3 : 0,10$ - 0,11$ → Achat moyen (20% du capital)
+⬇️ Zone 4 : 0,09$ - 0,10$ → Achat important (25% du capital)
+⬇️ Zone 5 : < 0,09$ → Achat massif (30% du capital)
+```
 
-This bot implements an **inverse DCA strategy** that:
-- 📉 **BUYS** when prices drop into the sweet spot ($0.17-$0.21)
-- 📈 **SELLS** only your profits when price surges ($0.23+)
-- 🛡️ **PROTECTS** your principal investment at all costs
-- 🔄 **REPEATS** this cycle to accumulate more HBAR over time
+### 💰 Prise de bénéfices échelonnée
+```
+PROFIT SÉCURISÉ À CHAQUE PALIER
+↗️ 0,14$ → Vente de 20% des bénéfices 
+↗️ 0,15$ → Vente de 30% des bénéfices
+↗️ 0,16$ → Vente de 50% des bénéfices
+↗️ 0,18$ → Vente de 70% des bénéfices
+↗️ 0,20$ → Vente de 90% des bénéfices
+```
 
-> *"Buy low, sell high, automate or die trying."*
+### 🛡️ Protection sophistiquée du capital
+- **Stop loss intelligent** : Limite les pertes à 15% maximum du capital
+- **Préservation du capital initial** : Vente uniquement des bénéfices générés
+- **Calcul prudent des investissements** : Basé sur la plus petite valeur entre montant fixe et pourcentage du capital
+
+### 🧠 Intelligence artificielle de marché
+- **Analyse 24h/24** : Surveille les plus hauts et plus bas pour détecter les tendances
+- **Adaptation dynamique** : Ajuste automatiquement la stratégie selon les conditions
+- **Intensification de la vigilance** : Augmente la fréquence des vérifications à l'approche des zones d'opportunité
+
+### 🔄 Système auto-apprenant
+- **Journalisation avancée** : Suivi détaillé de toutes les opérations et décisions
+- **Historique de performance** : Enregistrement et analyse des résultats
+- **Résilience exceptionnelle** : Récupération automatique après erreurs ou interruptions
 
 ---
 
-## 🚀 THE EDGE YOU'VE BEEN LOOKING FOR 🚀
+## 📋 Prérequis
 
+<div align="center">
+
+| Composant | Version minimale |
+|:--------:|:----------------:|
+| 🐍 Python | 3.8+ |
+| 🔑 API Coinbase | Permissions de trading |
+| 💻 Système | 24/7 pour une performance optimale |
+
+</div>
+
+---
+
+## 🔧 Installation
+
+### 1️⃣ Récupérez la dernière version d'Eleutheria
+```bash
+git clone https://github.com/votre-compte/eleutheria.git
+cd eleutheria
+```
+
+### 2️⃣ Installez les dépendances nécessaires
+```bash
+pip install requests hmac hashlib
+```
+
+### 3️⃣ Configurez vos clés API Coinbase
+```python
+API_KEY = "VOTRE_API_KEY"
+API_SECRET = "VOTRE_API_SECRET"
+API_PASSPHRASE = "VOTRE_API_PASSPHRASE"
+```
+
+---
+
+## 🚀 Utilisation
+
+### Démarrez votre voyage vers la liberté financière
+```bash
+python eleutheria.py
+```
+
+### Phases d'exécution automatique
+1. **Initialisation** : Détection du capital et des conditions de marché
+2. **Analyse** : Surveillance continue du prix de HBAR
+3. **Exécution** : Achat et vente automatiques aux moments opportuns 
+4. **Adaptation** : Ajustement des paramètres selon l'évolution du marché
+5. **Reporting** : Génération de rapports quotidiens détaillés
+
+---
+
+## ⚙️ Personnalisation avancée
+
+<details>
+<summary>🔍 <b>Cliquez pour voir les options de personnalisation</b></summary>
+
+### Zones d'achat
+```python
+ZONES_ACHAT = [
+    {"prix_max": 0.13, "prix_min": 0.12, "montant": 500, "pourcentage_capital": 0.10},
+    {"prix_max": 0.12, "prix_min": 0.11, "montant": 750, "pourcentage_capital": 0.15},
+    {"prix_max": 0.11, "prix_min": 0.10, "montant": 1000, "pourcentage_capital": 0.20},
+    {"prix_max": 0.10, "prix_min": 0.09, "montant": 1500, "pourcentage_capital": 0.25},
+    {"prix_max": 0.09, "prix_min": 0.00, "montant": 2000, "pourcentage_capital": 0.30}
+]
+```
+
+### Zones de vente
+```python
+ZONES_VENTE = [
+    {"prix_min": 0.14, "pourcentage_benefices": 0.20},
+    {"prix_min": 0.15, "pourcentage_benefices": 0.30},
+    {"prix_min": 0.16, "pourcentage_benefices": 0.50},
+    {"prix_min": 0.18, "pourcentage_benefices": 0.70},
+    {"prix_min": 0.20, "pourcentage_benefices": 0.90}
+]
+```
+
+### Seuil de protection
+```python
+STOP_LOSS_POURCENTAGE = 0.15  # 15% de perte maximum
+```
+
+### Intervalles de vérification
+```python
+INTERVALLE_VERIFICATION_NORMAL = 1800  # 30 minutes
+INTERVALLE_VERIFICATION_OPPORTUNITE = 300  # 5 minutes
+```
+</details>
+
+---
+
+## 📈 Tableau de bord et monitoring
+
+### Fichiers générés automatiquement
+- **📝 `eleutheria_trading.log`** : Journal détaillé de toutes les opérations
+- **💾 `eleutheria_data.json`** : Données de trading et métriques de performance
+- **📊 Rapport quotidien** : Généré automatiquement à minuit avec analyse complète
+
+### Exemple de rapport journalier
+```
+======================================================
+📊 RAPPORT DE TRADING ELEUTHERIA
+======================================================
+Date: 2025-04-07 00:00:15
+Prix HBAR actuel: 0.134500$
+Variation 24h: 0.128700$ - 0.136200$
+------------------------------------------------------
+Solde HBAR: 15482.75 (Valeur: 2082.43$)
+Solde USD: 1245.67$
+Capital total: 3328.10$
+Capital initial: 3000.00$
+Performance: 10.94%
+Prix moyen d'achat: 0.124800$
+Variation par rapport au prix moyen: 7.77%
+------------------------------------------------------
+DERNIÈRES TRANSACTIONS:
+Dernier achat: 1500.00 HBAR à 0.125000$ (187.50$) le 2025-04-06
+Dernière vente: 325.50 HBAR à 0.142000$ (46.22$) le 2025-04-06
+======================================================
+```
+
+---
+
+## ⚠️ Avertissement
+
+<div align="center">
 <table>
 <tr>
-<td width="50%">
+<td>
+<p align="center">
+<b>CE BOT DE TRADING EST FOURNI À TITRE EXPÉRIMENTAL</b>
+</p>
 
-### Without This Bot
-- 😱 FOMO buying at market peaks
-- 😰 Panic selling during dips
-- 😴 Missing profit opportunities while sleeping
-- 🤯 Emotional trading decisions
-- ⏰ Constantly checking prices
-- 📊 No systematic strategy
-</td>
-<td width="50%">
+Le trading de crypto-monnaies comporte des risques significatifs. Vous pouvez perdre une partie ou la totalité de votre capital. Eleutheria Trading Bot est conçu pour optimiser les opportunités de profit, mais ne garantit aucun résultat. Utilisez-le à vos propres risques et n'investissez que ce que vous pouvez vous permettre de perdre.
 
-### With HBAR Profit Harvester
-- 🤖 Automated buying at optimal prices
-- 💰 Systematic profit taking
-- 🔋 24/7 market monitoring
-- 🧠 Emotion-free trading decisions
-- ⛱️ Peace of mind & freedom
-- 📈 Growing HBAR position over time
 </td>
 </tr>
 </table>
+</div>
 
 ---
 
-## ⚡ INSTALLATION ⚡
-
-```bash
-# Clone this beast
-git clone https://github.com/yourusername/hbar-profit-harvester.git
-
-# Enter the money factory
-cd hbar-profit-harvester
-
-# Power it up
-pip install -r requirements.txt
-
-# Configure (see below)
-
-# Release the Kraken
-python hbar_profit_harvester.py
-```
-
----
-
-## 🔧 CONFIGURATION 🔧
-
-1️⃣ Get your Coinbase API credentials (Settings → API → New API Key)
-   * ✅ Enable trading permissions
-   * ❌ Disable withdrawal permissions
-
-2️⃣ Add your keys to the script:
-```python
-API_KEY = "your_coinbase_api_key"  # The key to the kingdom
-API_SECRET = "your_coinbase_api_secret"  # Keep this SECRET
-API_PASSPHRASE = "your_coinbase_api_passphrase"  # The magic words
-```
-
-3️⃣ Customize your strategy (or keep the proven defaults):
-```python
-BUY_PRICE_MIN = 0.17    # 📉 The bottom of your buy zone
-BUY_PRICE_MAX = 0.21    # 📊 The top of your buy zone
-SELL_PRICE_MIN = 0.23   # 📈 Your profit target
-PURCHASE_AMOUNT = 1000  # 💸 How much to invest each time
-CHECK_INTERVAL = 3600   # ⏱️ How often to check (in seconds)
-```
-
----
-
-## 🧠 HOW THE MAGIC HAPPENS 🧠
+## 📜 Licence
 
 <div align="center">
 
-```
-         🔍 DETECT PORTFOLIO VALUE
-                     │
-                     ▼
-            🔄 MONITOR HBAR PRICE
-                     │
-                     ▼
-          ┌─────────────────────┐
-          │  IS PRICE BETWEEN   │
-          │  $0.17 AND $0.21?   │
-          └─────────────────────┘
-           /                    \
-         YES                     NO
-         /                         \
-┌─────────────────┐                 ┌─────────────────┐
-│  BUY $1000 HBAR │                 │ IS PRICE $0.23+ │
-└─────────────────┘                 └─────────────────┘
-         │                                  /     \
-         │                               YES       NO
-         │                               /          \
-         │                ┌─────────────────────┐    │
-         └───────────────►│ SELL ONLY PROFITS,  │    │
-                          │ KEEP PRINCIPAL      │    │
-                          └─────────────────────┘    │
-                                    │                │
-                                    └────────────────┘
-                                          │
-                                          ▼
-                                    🔄 REPEAT
-```
+Ce projet est sous [licence MIT](LICENSE.md).
 
 </div>
 
-### 💡 Real-World Example:
-
-* 💼 You start with: $3000 total portfolio
-* 📈 HBAR price rises to $0.25, portfolio now worth $3800
-* 🤖 Bot calculates: $3800 - $3000 = $800 profit
-* 💰 Bot sells: Exactly $800 worth of HBAR
-* 🔒 Your $3000 principal remains intact
-* 📉 Price drops to $0.19 (buy zone)
-* 🛒 Bot buys: $1000 worth of HBAR
-* 🔁 Cycle repeats, growing your stack
-
 ---
 
-## 🦾 ADVANCED FEATURES 🦾
+<p align="center">
+<b>ELEUTHERIA TRADING BOT © 2025</b><br>
+<i>"L'autonomie financière à portée d'algorithme"</i>
+</p>
 
-* **Auto-Capital Detection**: Detects your starting portfolio value automatically
-* **Partial Profit Taking**: Only harvests profits, leaving your base untouched
-* **Dynamic Logging**: Detailed activity reports for monitoring
-* **Error Handling**: Robust recovery from API failures
-* **Flexible Timing**: Configurable check intervals
+<p align="center">
+<a href="https://github.com/votre-compte/eleutheria/issues">Signaler un bug</a> •
+<a href="https://github.com/votre-compte/eleutheria/wiki">Documentation</a> •
+<a href="mailto:contact@eleutheria-bot.com">Contact</a>
+</p>
 
----
-
-## ⚠️ DISCLAIMER ⚠️
-
-*Trading cryptocurrency involves significant risk and potential for loss. This software is provided "as is" without warranty of any kind. The developers are not responsible for any losses incurred through the use of this bot. Use at your own risk and never invest more than you can afford to lose.*
-
----
-
-## 📜 LICENSE 📜
-
-MIT License - Do whatever you want with this code, just don't blame me if you lose money.
-
+<div align="center">
+<p>
+<b>Développé par Bill Wilson Yede Nka</b><br>
+</p>
+</div>
