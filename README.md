@@ -223,7 +223,7 @@ Ce projet est sous [licence MIT](LICENSE.md).
 ---
 
 <p align="center">
-<b>ELEUTHERIA TRADING BOT © 2025</b><br>
+<b>ELEUTHERIA © 2025</b><br>
 <i>"L'autonomie financière à portée d'algorithme"</i>
 </p>
 
