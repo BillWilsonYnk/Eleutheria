@@ -1,4 +1,4 @@
-# 🤖 ELEUTHERIA TRADING BOT
+# 🤖 ELEUTHERIA
 > *La liberté financière automatisée pour Hedera (HBAR)*
 
 <div align="center">
