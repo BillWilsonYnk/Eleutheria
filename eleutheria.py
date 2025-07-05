@@ -34,35 +34,33 @@ logging.basicConfig(
 )
 logger = logging.getLogger("eleutheria")
 
-# Configuration
-API_KEY = "VOTRE_API_KEY"  # À remplacer par votre clé API Coinbase
-API_SECRET = "VOTRE_API_SECRET"  # À remplacer par votre secret API Coinbase
-API_PASSPHRASE = "VOTRE_API_PASSPHRASE"  # À remplacer par votre passphrase API Coinbase
-
-API_URL = "https://api.exchange.coinbase.com"
-HBAR_SYMBOL = "HBAR-USD"
-
-# Nouveaux paramètres de la stratégie adaptés au prix de 0,13$
-# Zones d'achat échelonnées
-ZONES_ACHAT = [
-    {"prix_max": 0.13, "prix_min": 0.12, "montant": 500, "pourcentage_capital": 0.10},  # Zone 1
-    {"prix_max": 0.12, "prix_min": 0.11, "montant": 750, "pourcentage_capital": 0.15},  # Zone 2
-    {"prix_max": 0.11, "prix_min": 0.10, "montant": 1000, "pourcentage_capital": 0.20},  # Zone 3
-    {"prix_max": 0.10, "prix_min": 0.09, "montant": 1500, "pourcentage_capital": 0.25},  # Zone 4
-    {"prix_max": 0.09, "prix_min": 0.00, "montant": 2000, "pourcentage_capital": 0.30}   # Zone 5
-]
-
-# Zones de vente échelonnées
-ZONES_VENTE = [
-    {"prix_min": 0.14, "pourcentage_benefices": 0.20},  # Vendre 20% des bénéfices à 0,14$
-    {"prix_min": 0.15, "pourcentage_benefices": 0.30},  # Vendre 30% des bénéfices à 0,15$
-    {"prix_min": 0.16, "pourcentage_benefices": 0.50},  # Vendre 50% des bénéfices à 0,16$
-    {"prix_min": 0.18, "pourcentage_benefices": 0.70},  # Vendre 70% des bénéfices à 0,18$
-    {"prix_min": 0.20, "pourcentage_benefices": 0.90}   # Vendre 90% des bénéfices à 0,20$
-]
-
-# Stop loss dynamique
-STOP_LOSS_POURCENTAGE = 0.15  # 15% de perte maximum sur le capital total
+# Import configuration
+try:
+    from config import *
+except ImportError:
+    # Fallback configuration if config.py doesn't exist
+    API_KEY = "VOTRE_API_KEY"
+    API_SECRET = "VOTRE_API_SECRET"
+    API_PASSPHRASE = "VOTRE_API_PASSPHRASE"
+    API_URL = "https://api.exchange.coinbase.com"
+    HBAR_SYMBOL = "HBAR-USD"
+    ZONES_ACHAT = [
+        {"prix_max": 0.13, "prix_min": 0.12, "montant": 500, "pourcentage_capital": 0.10},
+        {"prix_max": 0.12, "prix_min": 0.11, "montant": 750, "pourcentage_capital": 0.15},
+        {"prix_max": 0.11, "prix_min": 0.10, "montant": 1000, "pourcentage_capital": 0.20},
+        {"prix_max": 0.10, "prix_min": 0.09, "montant": 1500, "pourcentage_capital": 0.25},
+        {"prix_max": 0.09, "prix_min": 0.00, "montant": 2000, "pourcentage_capital": 0.30}
+    ]
+    ZONES_VENTE = [
+        {"prix_min": 0.14, "pourcentage_benefices": 0.20},
+        {"prix_min": 0.15, "pourcentage_benefices": 0.30},
+        {"prix_min": 0.16, "pourcentage_benefices": 0.50},
+        {"prix_min": 0.18, "pourcentage_benefices": 0.70},
+        {"prix_min": 0.20, "pourcentage_benefices": 0.90}
+    ]
+    STOP_LOSS_POURCENTAGE = 0.15
+    INTERVALLE_VERIFICATION_NORMAL = 1800
+    INTERVALLE_VERIFICATION_OPPORTUNITE = 300
 
 # Variables pour stocker les métriques
 capital_initial = None
@@ -72,10 +70,6 @@ dernieres_ventes = []
 performance_historique = []
 prix_plus_bas_24h = None
 prix_plus_haut_24h = None
-
-# Intervalle de vérification du prix (en secondes)
-INTERVALLE_VERIFICATION_NORMAL = 1800  # 30 minutes
-INTERVALLE_VERIFICATION_OPPORTUNITE = 300  # 5 minutes
 
 def get_timestamp():
     """Retourne un timestamp au format ISO 8601"""

@@ -92,6 +92,10 @@ cd eleutheria
 
 ### 2️⃣ Installez les dépendances nécessaires
 ```bash
+# Pour l'application desktop (recommandée)
+pip install -r requirements.txt
+
+# Ou pour l'interface en ligne de commande uniquement
 pip install requests hmac hashlib
 ```
 
@@ -106,7 +110,17 @@ API_PASSPHRASE = "VOTRE_API_PASSPHRASE"
 
 ## 🚀 Utilisation
 
-### Démarrez votre voyage vers la liberté financière
+### 🖥️ Application Desktop (Recommandée)
+```bash
+# Lanceur simple avec vérification des dépendances
+python run_desktop.py
+
+# Ou utilisez les lanceurs spécifiques à la plateforme
+./run_desktop.sh          # macOS/Linux
+run_desktop.bat           # Windows
+```
+
+### 💻 Interface en ligne de commande
 ```bash
 python eleutheria.py
 ```
@@ -117,6 +131,15 @@ python eleutheria.py
 3. **Exécution** : Achat et vente automatiques aux moments opportuns 
 4. **Adaptation** : Ajustement des paramètres selon l'évolution du marché
 5. **Reporting** : Génération de rapports quotidiens détaillés
+
+### 🎯 Interface Desktop
+L'application desktop offre :
+- **Interface moderne** : Thème sombre professionnel
+- **Données en temps réel** : Prix, portefeuille et performance
+- **Contrôles interactifs** : Démarrage/arrêt du trading en un clic
+- **Journalisation complète** : Logs détaillés des activités
+- **Panneau de configuration** : Gestion facile des paramètres
+- **Graphiques de prix** : Visualisation de l'historique des prix
 
 ---
 
