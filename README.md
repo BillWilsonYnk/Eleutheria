@@ -16,7 +16,7 @@
 
 - **Temps réel**: le bot écoute le flux `ticker` Coinbase via WebSocket (`wss://ws-feed.exchange.coinbase.com`).
 - **Boucle async**: `asyncio` + `websockets` (plus de polling toutes les X minutes).
-- **Mode simulation par défaut**: `passer_ordre()` est actuellement en **SIMULATION** (aucun ordre réel envoyé).
+- **Mode LIVE**: `passer_ordre()` envoie des ordres réels à l’API Coinbase Brokerage (à utiliser avec prudence).
 - **Nettoyage du repo**: les anciens fichiers Desktop/UI et scripts de lancement ont été retirés.
 - **Logs**: journalisation dans `eleutheria_ws.log`.
 
@@ -28,7 +28,7 @@
 - **Sortie**:
   - **Stop loss**: déclenchement si perte $\le -HARD\_STOP\_LOSS$.
   - **Trailing stop**: après un profit $\ge PROFIT\_MIN\_POUR\_SUIVI$, vente si le prix retombe de `DISTANCE_TRAILING_STOP` depuis le plus haut.
-- **Coupe-circuit journalier**: si `pertes_du_jour >= PERTE_MAX_JOURNALIERE_USD`, le bot arrête de trader.
+- **Coupe-circuit journalier**: si `pertes_du_jour >= PERTE_MAX_JOURNALIERE_EUR`, le bot arrête de trader.
 
 ---
 
@@ -67,6 +67,13 @@ export COINBASE_API_KEY="..."
 export COINBASE_API_SECRET="..."
 ```
 
+Alternative: tu peux copier `ENV.example` vers un fichier local (ex: `.env`) puis l’exporter (le repo ignore déjà `.env`) :
+
+```bash
+cp ENV.example .env
+set -a; source .env; set +a
+```
+
 ### Paramètres de trading
 
 Édite `config.py` (sans secrets) :
@@ -87,11 +94,10 @@ python eleutheria.py
 
 ---
 
-## ✅ Activer le trading réel (attention)
+## ✅ Trading réel (attention)
 
-Par défaut, `passer_ordre()` est en **SIMULATION**.
-
-Pour envoyer de vrais ordres, il faut **décommenter** le bloc “MODE RÉEL” dans `eleutheria.py` (fonction `passer_ordre`) et mettre tes vraies clés dans `config.py`.
+Ce bot est en **mode LIVE** dès que tu fournis `COINBASE_API_KEY` / `COINBASE_API_SECRET`.
+Assure-toi de comprendre les paramètres de risque (`HARD_STOP_LOSS`, `PERTE_MAX_JOURNALIERE_EUR`) avant exécution.
 
 ---
 
