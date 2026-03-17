@@ -4,9 +4,9 @@ import json
 import hmac
 import hashlib
 import requests
-import time
+import base64
+import datetime
 import logging
-from urllib.parse import urlparse
 from decimal import Decimal, ROUND_DOWN
 from config import *
 
@@ -21,106 +21,74 @@ class EleutheriaHFT:
         self.prix_max_atteint = 0
         self.en_position = False
         self.pertes_du_jour = 0.0
-        self.quantite_en_possession = 0.0  # Mémorisation exacte de la quantité achetée
         self.ws_url = "wss://ws-feed.exchange.coinbase.com"
-        self.verrou = asyncio.Lock()       # Cadenas anti-double ordre
 
-    def signer(self, method, request_path, body=""):
-        # Nouvelle méthode de signature Coinbase (sans Passphrase, Timestamp entier)
-        timestamp = str(int(time.time()))
-        message = timestamp + method + request_path + str(body)
-        
-        # Encodage du secret et création de la signature
-        signature = hmac.new(
-            API_SECRET.encode('utf-8'), 
-            message.encode('utf-8'), 
-            hashlib.sha256
-        ).hexdigest()
-        
+    def signer(self, method, endpoint, body=""):
+        timestamp = str(datetime.datetime.utcnow().timestamp())
+        message = timestamp + method + endpoint + body
+        key = base64.b64decode(API_SECRET)
+        signature = hmac.new(key, message.encode('utf-8'), hashlib.sha256)
         return {
             "CB-ACCESS-KEY": API_KEY,
-            "CB-ACCESS-SIGN": signature,
+            "CB-ACCESS-SIGN": base64.b64encode(signature.digest()).decode('utf-8'),
             "CB-ACCESS-TIMESTAMP": timestamp,
+            "CB-ACCESS-PASSPHRASE": API_PASSPHRASE,
             "Content-Type": "application/json"
         }
 
     def passer_ordre(self, cote, quantite):
+        # --- MODE RÉEL ACTIVÉ ---
         logger.warning(f"⚠️ [LIVE] Envoi de l'ordre {cote.upper()} de {quantite} HBAR à Coinbase...")
-        
-        # Préparation de l'ordre
         ordre = {"side": cote, "product_id": HBAR_SYMBOL, "type": "market", "size": str(quantite)}
         body = json.dumps(ordre)
+        headers = self.signer("POST", "/orders", body)
+        r = requests.post(f"{API_URL}/orders", headers=headers, data=body)
         
-        # Construction de l'URL finale et extraction du chemin pour la signature
-        endpoint_url = f"{API_URL}/orders"
-        request_path = urlparse(endpoint_url).path
-        
-        headers = self.signer("POST", request_path, body)
-        
-        try:
-            # Envoi avec un timeout de 5 secondes pour éviter de bloquer le bot
-            r = requests.post(endpoint_url, headers=headers, data=body, timeout=5)
-            
-            if r.status_code in [200, 201]:
-                logger.info(f"✅ Ordre {cote.upper()} exécuté avec succès.")
-                return True
-            else:
-                logger.error(f"❌ Échec de l'ordre : {r.text}")
-                return False
-        except Exception as e:
-            logger.error(f"⚠️ Erreur réseau lors de l'envoi de l'ordre : {e}")
+        if r.status_code in [200, 201]:
+            logger.info(f"✅ Ordre {cote.upper()} exécuté avec succès par Coinbase.")
+            return True
+        else:
+            logger.error(f"❌ Échec de l'ordre : {r.text}")
             return False
 
     async def traiter_prix(self, prix, volume_24h):
-        # On verrouille le traitement pour éviter les collisions si les prix arrivent trop vite
-        async with self.verrou:
-            
-            # Vérification du coupe-circuit (basé sur la config en EUR)
-            if self.pertes_du_jour >= PERTE_MAX_JOURNALIERE_EUR:
-                return
+        if self.pertes_du_jour >= PERTE_MAX_JOURNALIERE_USD:
+            return
 
-            if not self.en_position:
-                # Filtre de volume pour éviter les marchés morts
-                if float(volume_24h) < 50000:
-                    return 
+        if not self.en_position:
+            if float(volume_24h) < 1000000:
+                return 
 
-                if PRIX_ACHAT_MIN <= prix <= PRIX_ACHAT_MAX:
-                    # Calcul propre de la quantité
-                    quantite = float(Decimal(MONTANT_ACHAT / prix).quantize(Decimal('0.01'), rounding=ROUND_DOWN))
-                    
-                    if self.passer_ordre("buy", quantite):
-                        self.prix_entree = prix
-                        self.prix_max_atteint = prix
-                        self.en_position = True
-                        self.quantite_en_possession = quantite # On sauvegarde la quantité exacte
-                        logger.info(f"🚀 ACHAT IMMÉDIAT à {prix}€")
-            else:
-                # Mise à jour du sommet atteint
-                if prix > self.prix_max_atteint:
+            if PRIX_ACHAT_MIN <= prix <= PRIX_ACHAT_MAX:
+                quantite = float(Decimal(MONTANT_ACHAT / prix).quantize(Decimal('0.01'), rounding=ROUND_DOWN))
+                if self.passer_ordre("buy", quantite):
+                    self.prix_entree = prix
                     self.prix_max_atteint = prix
-                
-                profit = (prix - self.prix_entree) / self.prix_entree
-                baisse = (self.prix_max_atteint - prix) / self.prix_max_atteint
+                    self.en_position = True
+                    logger.info(f"🚀 ACHAT IMMÉDIAT à {prix}€")
+        else:
+            if prix > self.prix_max_atteint:
+                self.prix_max_atteint = prix
+            
+            profit = (prix - self.prix_entree) / self.prix_entree
+            baisse = (self.prix_max_atteint - prix) / self.prix_max_atteint
 
-                doit_vendre = False
+            doit_vendre = False
+            
+            if profit <= -HARD_STOP_LOSS:
+                logger.warning("🚨 STOP LOSS DÉCLENCHÉ !")
+                doit_vendre = True
+                self.pertes_du_jour += MONTANT_ACHAT * abs(profit)
                 
-                # SÉCURITÉ : Hard Stop Loss
-                if profit <= -HARD_STOP_LOSS:
-                    logger.warning("🚨 STOP LOSS DÉCLENCHÉ !")
-                    doit_vendre = True
-                    self.pertes_du_jour += MONTANT_ACHAT * abs(profit)
-                    
-                # GAIN : Trailing Stop
-                elif profit >= PROFIT_MIN_POUR_SUIVI and baisse >= DISTANCE_TRAILING_STOP:
-                    logger.info("💰 PRISE DE PROFIT OPTIMISÉE")
-                    doit_vendre = True
+            elif profit >= PROFIT_MIN_POUR_SUIVI and baisse >= DISTANCE_TRAILING_STOP:
+                logger.info("💰 PRISE DE PROFIT OPTIMISÉE")
+                doit_vendre = True
 
-                if doit_vendre:
-                    # On revend exactement ce qu'on a acheté
-                    if self.passer_ordre("sell", self.quantite_en_possession):
-                        self.en_position = False
-                        self.quantite_en_possession = 0.0 # Remise à zéro
-                        logger.info(f"✅ VENTE à {prix}€ | Gain/Perte géré.")
+            if doit_vendre:
+                quantite_vendre = float(Decimal(MONTANT_ACHAT / self.prix_entree).quantize(Decimal('0.01'), rounding=ROUND_DOWN))
+                if self.passer_ordre("sell", quantite_vendre):
+                    self.en_position = False
+                    logger.info(f"✅ VENTE à {prix}€ | Gain/Perte géré.")
 
     async def ecouter_marche(self):
         logger.info("⚡ Connexion WebSocket Coinbase en cours...")
@@ -130,24 +98,21 @@ class EleutheriaHFT:
             "channels": ["ticker"]
         }
 
-        # Boucle de reconnexion automatique en cas de micro-coupure internet
-        while True: 
-            try:
-                async with websockets.connect(self.ws_url) as ws:
-                    await ws.send(json.dumps(subscribe_message))
-                    logger.info("📡 Flux temps réel activé. Le bot surveille le marché...")
+        async with websockets.connect(self.ws_url) as ws:
+            await ws.send(json.dumps(subscribe_message))
+            logger.info("📡 Flux temps réel activé. Le bot surveille le marché...")
 
-                    while True:
-                        reponse = await ws.recv()
-                        data = json.loads(reponse)
+            while True:
+                try:
+                    reponse = await ws.recv()
+                    data = json.loads(reponse)
+                    
+                    if data["type"] == "ticker" and "price" in data:
+                        await self.traiter_prix(float(data["price"]), float(data["volume_24h"]))
                         
-                        if data["type"] == "ticker" and "price" in data:
-                            # asyncio.create_task lance le traitement sans bloquer la réception du flux
-                            asyncio.create_task(self.traiter_prix(float(data["price"]), float(data["volume_24h"])))
-                            
-            except Exception as e:
-                logger.error(f"Erreur WebSocket : {e}. Reconnexion dans 5 secondes...")
-                await asyncio.sleep(5)
+                except Exception as e:
+                    logger.error(f"Erreur : {e}")
+                    await asyncio.sleep(5)
 
 if __name__ == "__main__":
     bot = EleutheriaHFT()
