@@ -51,11 +51,28 @@ pip install -r requirements.txt
 
 ## ⚙️ Configuration
 
-Édite `config.py`:
+### Clés API (ne jamais commit)
 
-- **API**: `API_KEY`, `API_SECRET`, `API_PASSPHRASE`, `HBAR_SYMBOL`
+Renseigne tes clés Coinbase via **variables d’environnement** :
+
+- `COINBASE_API_KEY`
+- `COINBASE_API_SECRET`
+
+Un fichier d’exemple est fourni : `ENV.example` (à copier localement, sans commit).
+
+Exemple (zsh/macOS) :
+
+```bash
+export COINBASE_API_KEY="..."
+export COINBASE_API_SECRET="..."
+```
+
+### Paramètres de trading
+
+Édite `config.py` (sans secrets) :
+
 - **Trading**: `MONTANT_ACHAT`, `PRIX_ACHAT_MIN`, `PRIX_ACHAT_MAX`
-- **Risk**: `HARD_STOP_LOSS`, `PERTE_MAX_JOURNALIERE_USD`
+- **Risk**: `HARD_STOP_LOSS`, `PERTE_MAX_JOURNALIERE_EUR`
 - **Trailing**: `PROFIT_MIN_POUR_SUIVI`, `DISTANCE_TRAILING_STOP`
 
 ---
